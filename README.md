@@ -10,7 +10,7 @@
 [![GitHub license](https://img.shields.io/github/license/WT-Agent/ai-anquan)](https://github.com/WT-Agent/ai-anquan/blob/main/LICENSE)
 [![Online Demo](https://img.shields.io/badge/Online_Demo-anquan.wuxian.xyz-indigo?style=flat-square)](https://anquan.wuxian.xyz)
 
-[在线演示](https://anquan.wuxian.xyz) · [快速启动](#快速启动) · [核心特性](#核心特性) · [脚手架集成](#脚手架集成说明) · [支持一下](#打赏支持)
+[在线演示](https://anquan.wuxian.xyz) · [快速启动](#快速启动) · [核心特性](#核心特性) · [脚手架集成](#脚手架集成说明) · [支持一下](#联系我们与打赏支持)
 
 </div>
 
@@ -42,7 +42,7 @@
 - **纯静态零成本部署**：架构保持 100% 静态化，无额外 Server 依赖，支持一键托管至 Cloudflare Pages、Vercel、GitHub Pages 或 CDN/OSS 静态存储。
 - **安全代理与双模型网关**：内置安全开发代理中转层，支持无缝接入 DeepSeek-V3/R1 文本大模型及通义千问/通义万相多模态生图 API。
 - **多维度评分与案例展示**：集成 AI 共识多指标看板、动态用户活跃跑马灯 ticker、精彩场景 Preset 案例以及生成卡片截图分享功能。
-- **微信/钉钉双通道联系**：全量内置微信交流与钉钉联系双二维码组件，支持灵活的裂变锁屏与额度留存管理。
+- **支付打赏与通道联系**：内置微信支付与支付宝赞赏二维码组件，支持灵活的裂变锁屏与额度留存管理。
 
 ---
 
@@ -122,13 +122,13 @@ node bin/cli.js set ai-anquan model deepseek-chat
 
 ## 联系我们与打赏支持
 
-如果您在使用过程中遇到问题，或希望与团队交流，欢迎扫码联系我们或打赏支持：
+如果本项目对您的工作或学习有所帮助，欢迎扫码请团队喝杯咖啡，支持我们的开源维护！
 
 <div align="center">
 
-**微信交流** | **钉钉联系**
+**微信支付** | **支付宝**
 :---:|:---:
-<img src="./asset/weixin.png" width="180" alt="微信交流"> | <img src="./asset/dingtalk.png" width="180" alt="钉钉联系">
+<img src="./asset/tenpay.png" width="180" alt="微信支付"> | <img src="./asset/alipay.png" width="180" alt="支付宝">
 
 </div>
 

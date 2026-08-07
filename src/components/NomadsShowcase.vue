@@ -2,10 +2,10 @@
   <section class="nomads-showcase-section">
     <div class="showcase-header">
       <div class="header-left">
-        <h2 class="showcase-title">安全教育与应急演练实战模板库</h2>
-        <p class="showcase-subtitle">精选典型安全隐患排查与应急响应场景，点击“一键套用”生成标准方案</p>
+        <h2 class="showcase-title">实战案例与模板库 (Nomads Showcase)</h2>
+        <p class="showcase-subtitle">精选高频实战场景，点击“一键套用”快速生成高质量结果</p>
       </div>
-      <span class="showcase-badge">已收录 {{ showcaseItems.length }} 个安全规范模板</span>
+      <span class="showcase-badge">已收录 {{ showcaseItems.length }} 个实战模板</span>
     </div>
 
     <div class="showcase-grid">
@@ -41,8 +41,13 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
+const props = defineProps<{
+  appTitle?: string;
+  isImage?: boolean;
+}>();
+
 const emit = defineEmits<{
-  (e: 'apply-template', payload: { prompt: string; scenario?: string; industry?: string }): void;
+  (e: 'apply-template', payload: { prompt: string; style?: string }): void;
 }>();
 
 export interface ShowcaseItem {
@@ -50,73 +55,105 @@ export interface ShowcaseItem {
   tag: string;
   title: string;
   prompt: string;
-  scenario?: string;
-  industry?: string;
+  style?: string;
   usageCount: string;
 }
 
-const showcaseItems = computed<ShowcaseItem[]>(() => [
-  {
-    id: 'anquan-1',
-    tag: '危化品安全',
-    title: '化工车间气体泄漏应急处置预案',
-    prompt: '化工厂液氨储罐管道发生微小泄漏，需要一份包含警报触发、个人防护防护服穿戴、风向切断源及人员疏散的应急处置步骤。',
-    scenario: '突发事件应急预案演练',
-    industry: '危险化学品',
-    usageCount: '28.6k'
-  },
-  {
-    id: 'anquan-2',
-    tag: '建筑施工',
-    title: '高空作业防坠落与安全带交底',
-    prompt: '针对 15 米高空钢结构搭建施工，制定班前五分钟安全教育宣导，强调双钩安全带系挂规则与脚手架搭设检查。',
-    scenario: '施工作业与安全防护规程',
-    industry: '建筑施工',
-    usageCount: '34.2k'
-  },
-  {
-    id: 'anquan-3',
-    tag: '消防疏散',
-    title: '商业综合体火灾人员逃生预案',
-    prompt: '针对 5 层大型商场开展年度消防安全演练，拟定防烟面罩使用说明、防火卷帘门联动及多出口安全撤离路线指导。',
-    scenario: '消防安全与疏散撤离',
-    industry: '公共场所',
-    usageCount: '41.8k'
-  },
-  {
-    id: 'anquan-4',
-    tag: '受限空间',
-    title: '地下管网污水井下作业通风防毒',
-    prompt: '市政污水井清淤作业，梳理“先通风、再检测、后作业”的标准规程，包含有毒有害气体检测仪操作与三脚架救援。',
-    scenario: '企业安全生产与隐患排查',
-    industry: '工矿制造',
-    usageCount: '22.9k'
-  },
-  {
-    id: 'anquan-5',
-    tag: '机械加工',
-    title: '金切机床旋转部件防缠绕排查',
-    prompt: '车间数控车床与铣床隐患排查，制定防误触急停按钮、禁止戴手套操作、防护挡板完好性检查与违章罚款考核条款。',
-    scenario: '企业安全生产与隐患排查',
-    industry: '工矿制造',
-    usageCount: '19.5k'
-  },
-  {
-    id: 'anquan-6',
-    tag: '交通防汛',
-    title: '物流园区暴雨积水与物资转移',
-    prompt: '物流仓库面临特大暴雨预警，编制沙袋防汛挡水板铺设、低洼处车辆移位及高压配电房防淹安全指南。',
-    scenario: '突发事件应急预案演练',
-    industry: '交通运输',
-    usageCount: '31.4k'
+// 模拟实战案例数据库（支持根据文本/图像类及应用主题切换）
+const showcaseItems = computed<ShowcaseItem[]>(() => {
+  if (props.isImage) {
+    return [
+      {
+        id: 'img-1',
+        tag: '写真肖像',
+        title: '商务精英形象照',
+        prompt: '高端写字楼背景，身穿深蓝色西装，眼神自信专注，赛博朋克光影效果',
+        style: '<photography>',
+        usageCount: '18.5k'
+      },
+      {
+        id: 'img-2',
+        tag: '概念插画',
+        title: '未来科幻城市海报',
+        prompt: '霓虹灯光的赛博朋克立体城市，飞行汽车，高品质概念插画，8k分辨率',
+        style: '<illustration>',
+        usageCount: '24.1k'
+      },
+      {
+        id: 'img-3',
+        tag: '二次元动漫',
+        title: '日系国潮动漫角色',
+        prompt: '穿着现代汉服的国风少年，手持纸伞，水彩漫感，唯美光感与柔光滤镜',
+        style: '<anime>',
+        usageCount: '15.9k'
+      },
+      {
+        id: 'img-4',
+        tag: '水彩艺术',
+        title: '治愈系自然风景画',
+        prompt: '晨雾中的森林湖泊，阳光穿透树林，水彩渐变质感，温馨治愈风格',
+        style: '<watercolor>',
+        usageCount: '12.3k'
+      }
+    ];
+  } else {
+    return [
+      {
+        id: 'text-1',
+        tag: '职场总结',
+        title: '周报 OKR 成果提炼',
+        prompt: '本周完成了核心模块优化与线上异常排查，请帮我梳理为具备量化指标的 OKR 汇报文案',
+        style: '专业干练，结果导向',
+        usageCount: '32.8k'
+      },
+      {
+        id: 'text-2',
+        tag: '高情商沟通',
+        title: '拒绝不合理加班话术',
+        prompt: '领导在周末突然布置非紧急任务，如何高情商、委婉且有理有据地推迟到工作日处理？',
+        style: '高情商，委婉，有情调',
+        usageCount: '28.4k'
+      },
+      {
+        id: 'text-3',
+        tag: '短视频文案',
+        title: '知识干货吸睛开头',
+        prompt: '准备制作一条关于高效学习法的短视频，设计 3 个能在前 3 秒留住用户的爆款口播开头',
+        style: '专业干练，结果导向',
+        usageCount: '45.1k'
+      },
+      {
+        id: 'text-4',
+        tag: '商务公文',
+        title: '跨部门协同申请函',
+        prompt: '因项目上线需要研发部门配合联调，撰写一份正式、严谨且明确时间节点的协同申请书',
+        style: '专业干练，结果导向',
+        usageCount: '19.7k'
+      },
+      {
+        id: 'text-5',
+        tag: '小红书种草',
+        title: '实战干货笔记排版',
+        prompt: '分享 5 个提升日常工作效率的文字工具，语言亲切，搭配吸引人的标题与 Emoji 排版',
+        style: '高情商，委婉，有情调',
+        usageCount: '36.2k'
+      },
+      {
+        id: 'text-6',
+        tag: '学术润色',
+        title: '论文摘要与结论重构',
+        prompt: '将以下粗糙的研究结论重写为学术规范、逻辑严密且无语法语病的论文摘要总结',
+        style: '专业干练，结果导向',
+        usageCount: '22.0k'
+      }
+    ];
   }
-]);
+});
 
 function applyTemplate(item: ShowcaseItem) {
   emit('apply-template', {
     prompt: item.prompt,
-    scenario: item.scenario,
-    industry: item.industry
+    style: item.style
   });
 }
 </script>
